@@ -58,17 +58,19 @@
         .profile-img {
             width: 150px;
             height: 150px;
-            border-radius: 50%;
+            border-radius: 50%;   /* make it circular */
             margin: 0 auto 20px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: white;
-            position: relative;
-            z-index: 1;
+            overflow: hidden;     /* crop image to circle */
+            border: 5px solid #667eea;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ensures picture fills the circle nicely */
+        }
+
 
         h1 {
             color: #2c3e50;
@@ -520,7 +522,7 @@
         <!-- Header -->
         <header>
             <div class="profile-img floating">
-                <i class="fas fa-user"></i>
+                <img src="profile.jpg" alt="Partha Samanta">
             </div>
             <h1>Partha Samanta</h1>
             <p class="subtitle">Professional MIS Executive</p>
