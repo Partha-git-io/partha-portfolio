@@ -203,7 +203,7 @@
             line-height: 1.8;
             text-align: center;
             color: #5a6c7d;
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -527,7 +527,7 @@
             <h1>Partha Samanta</h1>
             <p class="subtitle">MIS Executive</p>
             <div class="contact-links">
-                <a href="mailto:parthasamanta1997@gmail.com">
+                <a href="#" onclick="openEmail()">
                     <i class="fas fa-envelope"></i>
                     Email
                 </a>
@@ -704,7 +704,7 @@
                         <i class="fas fa-envelope"></i>
                         <h3>Email Me</h3>
                         <p>Send me a direct email and I'll respond within 24 hours</p>
-                        <a href="mailto:parthasamanta1997@gmail.com?subject=Portfolio Inquiry&body=Hello Partha,%0D%0A%0D%0AI found your portfolio and would like to discuss..." class="contact-btn">
+                        <a href="#" onclick="openEmailWithBody()" class="contact-btn">
                             <i class="fas fa-paper-plane"></i>
                             Compose Email
                         </a>
@@ -740,6 +740,32 @@
     </div>
 
     <script>
+
+        // Email functionality that works across all devices and platforms
+        function openEmail() {
+            const email = 'parthasamanta1997@gmail.com';
+            const subject = 'Portfolio Inquiry';
+            const body = 'Hello Partha,\n\nI found your portfolio and would like to discuss...';
+            
+            // Create mailto URL
+            const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Try to open email client
+            window.location.href = mailtoUrl;
+        }
+
+        function openEmailWithBody() {
+            const email = 'parthasamanta1997@gmail.com';
+            const subject = 'Portfolio Inquiry';
+            const body = 'Hello Partha,\n\nI found your portfolio and would like to discuss...';
+            
+            // Create mailto URL
+            const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            // Try to open email client
+            window.location.href = mailtoUrl;
+        }
+        
         // Navigation functionality
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
@@ -821,6 +847,7 @@
     </script>
 </body>
 </html>
+
 
 
 
