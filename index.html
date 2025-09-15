@@ -704,7 +704,7 @@
                         <i class="fas fa-envelope"></i>
                         <h3>Email Me</h3>
                         <p>Send me a direct email and I'll respond within 24 hours</p>
-                        <a href="#" onclick="openEmailWithBody()" class="contact-btn">
+                        <a href="#" onclick="showEmailModal()" class="contact-btn">
                             <i class="fas fa-paper-plane"></i>
                             Compose Email
                         </a>
@@ -739,31 +739,128 @@
         </section>
     </div>
 
+    <!-- Email Modal -->
+    <div id="emailModal" class="email-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeEmailModal()">&times;</button>
+            <h2 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">
+                <i class="fas fa-envelope" style="margin-right: 10px;"></i>
+                Contact Me
+            </h2>
+            
+            <div class="email-address">
+                <div>parthasamanta1997@gmail.com</div>
+                <button class="copy-btn" onclick="copyEmail()">
+                    <i class="fas fa-copy"></i> Copy Email
+                </button>
+                <div id="copySuccess" class="copy-success">Email copied to clipboard!</div>
+            </div>
+
+            <div class="email-options">
+                <a href="mailto:parthasamanta1997@gmail.com?subject=Portfolio Inquiry&body=Hello Partha,%0D%0A%0D%0AI found your portfolio and would like to discuss..." class="email-option">
+                    <i class="fas fa-desktop" style="font-size: 24px; color: #667eea;"></i>
+                    <div>
+                        <strong>Open in Email Client</strong>
+                        <small style="display: block; color: #666;">Works if you have Outlook, Mail, etc. configured</small>
+                    </div>
+                </a>
+
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=parthasamanta1997@gmail.com&su=Portfolio Inquiry&body=Hello Partha,%0D%0A%0D%0AI found your portfolio and would like to discuss..." target="_blank" class="email-option">
+                    <i class="fab fa-google" style="font-size: 24px; color: #667eea;"></i>
+                    <div>
+                        <strong>Open in Gmail</strong>
+                        <small style="display: block; color: #666;">Opens Gmail in a new tab</small>
+                    </div>
+                </a>
+
+                <a href="https://outlook.live.com/owa/?path=/mail/action/compose&to=parthasamanta1997@gmail.com&subject=Portfolio Inquiry&body=Hello Partha,%0D%0A%0D%0AI found your portfolio and would like to discuss..." target="_blank" class="email-option">
+                    <i class="fab fa-microsoft" style="font-size: 24px; color: #667eea;"></i>
+                    <div>
+                        <strong>Open in Outlook</strong>
+                        <small style="display: block; color: #666;">Opens Outlook.com in a new tab</small>
+                    </div>
+                </a>
+            </div>
+
+            <p style="text-align: center; margin-top: 20px; color: #666; font-size: 0.9em;">
+                Choose the option that works best for your device and email setup
+            </p>
+        </div>
+    </div>
+
     <script>
 
-        // Email functionality that works across all devices and platforms
-        function openEmail() {
-            const email = 'parthasamanta1997@gmail.com';
-            const subject = 'Portfolio Inquiry';
-            const body = 'Hello Partha,\n\nI found your portfolio and would like to discuss...';
-            
-            // Create mailto URL
-            const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Try to open email client
-            window.location.href = mailtoUrl;
+       // Email Modal Functions
+        function showEmailModal() {
+            document.getElementById('emailModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
-        function openEmailWithBody() {
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('emailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeEmailModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeEmailModal();
+            }
+        });
+
+        // Copy email function
+        function copyEmail() {
             const email = 'parthasamanta1997@gmail.com';
-            const subject = 'Portfolio Inquiry';
-            const body = 'Hello Partha,\n\nI found your portfolio and would like to discuss...';
             
-            // Create mailto URL
-            const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            // Modern way using Clipboard API
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(email).then(function() {
+                    showCopySuccess();
+                }).catch(function(err) {
+                    // Fallback for older browsers
+                    fallbackCopyEmail(email);
+                });
+            } else {
+                // Fallback for older browsers or insecure contexts
+                fallbackCopyEmail(email);
+            }
+        }
+
+        function fallbackCopyEmail(email) {
+            const textArea = document.createElement('textarea');
+            textArea.value = email;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
             
-            // Try to open email client
-            window.location.href = mailtoUrl;
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (err) {
+                console.error('Failed to copy email:', err);
+                // Show email address prominently if copy fails
+                alert('Email: parthasamanta1997@gmail.com');
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showCopySuccess() {
+            const successMsg = document.getElementById('copySuccess');
+            successMsg.classList.add('show');
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 2000);
         }
         
         // Navigation functionality
@@ -847,6 +944,7 @@
     </script>
 </body>
 </html>
+
 
 
 
