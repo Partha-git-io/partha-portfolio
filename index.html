@@ -125,7 +125,9 @@
   .chip{
     font-family:var(--mono);font-size:.8rem;color:var(--ink);
     background:var(--bg);border:1px solid var(--line);padding:5px 10px;border-radius:7px;
+    transition:border-color .18s ease,background .18s ease,color .18s ease,transform .18s ease;cursor:default;
   }
+  .chip:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);transform:translateY(-2px)}
 
   /* ---------- Experience timeline ---------- */
   .timeline{position:relative}
