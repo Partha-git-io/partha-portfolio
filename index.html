@@ -134,6 +134,25 @@
   .job li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;background:var(--faint);border-radius:1px}
   .job li b{color:var(--ink);font-weight:600}
 
+  /* ---------- Featured project ---------- */
+  .featured{
+    display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px;margin-bottom:20px;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s;
+  }
+  .featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
+  .featured:hover{border-color:var(--accent);box-shadow:0 6px 24px rgba(36,59,176,.08)}
+  .featured-body{max-width:70ch}
+  .tag-live{
+    display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.76rem;font-weight:500;
+    color:var(--accent);background:var(--accent-soft);padding:5px 11px;border-radius:20px;margin-bottom:16px;
+  }
+  .tag-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#0a7c3f;box-shadow:0 0 0 3px rgba(10,124,63,.15)}
+  .featured h3{font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
+  .featured p{color:var(--muted);font-size:.98rem;margin-bottom:18px}
+  .featured .chips{margin-bottom:20px}
+  .featured-cta{display:inline-flex;align-items:center;color:var(--accent);font-weight:600;font-size:.96rem}
+  .featured:hover .featured-cta{color:var(--accent-ink)}
+
   /* ---------- Projects ---------- */
   .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   .proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
@@ -401,6 +420,24 @@
   <div class="wrap">
     <h2>Projects &amp; hands-on practice</h2>
     <p class="sec-lead">Things I've built or prototyped, in and around my day job.</p>
+
+    <a class="featured" href="https://real-estate-agent-boost.lovable.app/" target="_blank" rel="noopener">
+      <div class="featured-body">
+        <span class="tag-live">Live MVP demo</span>
+        <h3>PropFlow — Real estate CRM with an AI assistant</h3>
+        <p>A standalone product I designed and shipped end-to-end. PropFlow keeps a real-estate agent's leads, property inventory and site visits in one workspace, with an AI assistant that reads the pipeline and suggests the next best action. Four working modules: lead pipeline, property inventory, site-visit scheduling, and the assistant. Built with vibe coding — Claude and ChatGPT for design, logic and debugging, and Lovable for build and deployment.</p>
+        <div class="chips">
+          <span class="chip">Lovable</span>
+          <span class="chip">Claude</span>
+          <span class="chip">ChatGPT</span>
+          <span class="chip">Vibe Coding</span>
+          <span class="chip">AI Assistant</span>
+          <span class="chip">CRM</span>
+        </div>
+        <span class="featured-cta">Visit live demo &rarr;</span>
+      </div>
+    </a>
+
     <div class="proj-grid">
       <div class="proj">
         <h3>Business apps with Generative AI</h3>
