@@ -59,16 +59,22 @@
   }
   .nav-links{display:flex;gap:4px;align-items:center}
   .nav-links a{
-    padding:8px 14px;border-radius:8px;color:var(--muted);font-size:.94rem;font-weight:500;
-    transition:color .15s,background .15s;
+    position:relative;padding:8px 14px;border-radius:8px;color:var(--muted);font-size:.94rem;font-weight:500;
+    transition:color .2s;
   }
-  .nav-links a:not(.nav-cta):hover{color:var(--ink);background:var(--surface)}
-  .nav-links a.active{color:var(--accent);background:var(--accent-soft)}
+  .nav-links a:not(.nav-cta)::after{
+    content:"";position:absolute;left:14px;right:14px;bottom:3px;height:2px;background:var(--accent);
+    transform:scaleX(0);transform-origin:left;transition:transform .25s ease;border-radius:2px;
+  }
+  .nav-links a:not(.nav-cta):hover{color:var(--ink)}
+  .nav-links a:not(.nav-cta):hover::after{transform:scaleX(1)}
+  .nav-links a.active{color:var(--accent)}
+  .nav-links a.active::after{transform:scaleX(1)}
   .nav-cta{
     background:var(--accent);color:#fff!important;padding:8px 16px;border-radius:8px;
-    font-weight:500;font-size:.94rem;
+    font-weight:500;font-size:.94rem;transition:background .2s,transform .2s,box-shadow .2s;
   }
-  .nav-cta:hover{background:var(--accent-ink)}
+  .nav-cta:hover{background:var(--accent-ink);transform:translateY(-1px);box-shadow:0 6px 16px rgba(36,59,176,.25)}
   .menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:8px;
     width:40px;height:40px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
 
@@ -111,7 +117,8 @@
 
   /* ---------- Skills ---------- */
   .skill-groups{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+  .skill-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(36,59,176,.08)}
   .skill-card h3{font-size:.98rem;font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:9px}
   .skill-card h3 .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -140,10 +147,11 @@
   /* ---------- Featured project ---------- */
   .featured{
     display:block;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
-    padding:32px;margin-bottom:20px;position:relative;overflow:hidden;transition:border-color .15s,box-shadow .15s;
+    padding:32px;margin-bottom:20px;position:relative;overflow:hidden;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
   }
-  .featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}
-  .featured:hover{border-color:var(--accent);box-shadow:0 6px 24px rgba(36,59,176,.08)}
+  .featured::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .3s ease}
+  .featured:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 34px rgba(36,59,176,.10)}
+  .featured:hover::before{transform:scaleY(1)}
   .featured-body{max-width:70ch}
   .tag-live{
     display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.76rem;font-weight:500;
@@ -153,12 +161,13 @@
   .featured h3{font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
   .featured p{color:var(--muted);font-size:.98rem;margin-bottom:18px}
   .featured .chips{margin-bottom:20px}
-  .featured-cta{display:inline-flex;align-items:center;color:var(--accent);font-weight:600;font-size:.96rem}
-  .featured:hover .featured-cta{color:var(--accent-ink)}
+  .featured-cta{display:inline-flex;align-items:center;color:var(--accent);font-weight:600;font-size:.96rem;transition:transform .2s ease,color .2s ease}
+  .featured:hover .featured-cta{color:var(--accent-ink);transform:translateX(5px)}
 
   /* ---------- Projects ---------- */
   .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .proj:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(36,59,176,.08)}
   .proj h3{font-size:1.05rem;font-weight:600;margin-bottom:10px}
   .proj p{color:var(--muted);font-size:.94rem;margin-bottom:16px;flex-grow:1}
   .proj .chips{margin-top:auto}
@@ -166,29 +175,34 @@
   /* ---------- Two-col (certs + education) ---------- */
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
   .list-block h3{font-size:1.05rem;font-weight:600;margin-bottom:16px}
-  .cert-list{list-style:none;display:grid;gap:12px}
-  .cert-list li{padding-left:20px;position:relative;color:var(--muted);font-size:.95rem}
-  .cert-list li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border:1.5px solid var(--accent);border-radius:2px}
-  .cert-list li b{color:var(--ink);font-weight:600;display:block}
-  .edu-item{padding:16px 0;border-bottom:1px solid var(--line)}
-  .edu-item:last-child{border-bottom:none}
-  .edu-item .deg{font-weight:600}
-  .edu-item .meta{color:var(--muted);font-size:.9rem;margin-top:2px}
-  .edu-item .yr{font-family:var(--mono);font-size:.82rem;color:var(--faint)}
-  .lang-row{margin-top:22px;display:flex;gap:8px;flex-wrap:wrap}
+  .cred-list{list-style:none;display:grid;gap:10px}
+  .cred{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .cred:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 24px rgba(36,59,176,.07)}
+  .cred-ic{flex-shrink:0;width:36px;height:36px;border-radius:9px;background:var(--accent-soft);color:var(--accent);
+    display:grid;place-items:center;transition:background .25s ease,color .25s ease}
+  .cred:hover .cred-ic{background:var(--accent);color:#fff}
+  .cred-ic svg{width:18px;height:18px}
+  .cred-txt{display:flex;flex-direction:column;gap:2px;flex-grow:1;min-width:0}
+  .cred-title{font-weight:600;color:var(--ink);font-size:.96rem;line-height:1.35}
+  .cred-meta{color:var(--muted);font-size:.85rem}
+  .cred-yr{flex-shrink:0;font-family:var(--mono);font-size:.76rem;color:var(--accent);
+    background:var(--accent-soft);padding:4px 9px;border-radius:6px;align-self:center}
 
   /* ---------- Contact ---------- */
   .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:24px}
-  .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px}
-  .contact-card .ic{width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:16px}
+  .contact-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .contact-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(36,59,176,.08)}
+  .contact-card .ic{width:40px;height:40px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;margin-bottom:16px;transition:background .25s ease,color .25s ease,transform .25s ease}
+  .contact-card:hover .ic{background:var(--accent);color:#fff;transform:scale(1.06)}
   .contact-card .ic svg{width:20px;height:20px}
   .contact-card h3{font-size:1rem;font-weight:600;margin-bottom:4px}
   .contact-card p{color:var(--muted);font-size:.9rem;margin-bottom:16px;word-break:break-word}
   .contact-card a.link,.contact-card button.link{
     display:inline-flex;align-items:center;gap:7px;color:var(--accent);font-weight:500;font-size:.92rem;
-    background:none;border:none;cursor:pointer;font-family:inherit;padding:0;
+    background:none;border:none;cursor:pointer;font-family:inherit;padding:0;transition:color .2s ease,transform .2s ease;
   }
-  .contact-card a.link:hover,.contact-card button.link:hover{color:var(--accent-ink)}
+  .contact-card a.link:hover,.contact-card button.link:hover{color:var(--accent-ink);transform:translateX(3px)}
   .copied{color:#0a7c3f;font-size:.82rem;margin-left:8px;opacity:0;transition:opacity .2s}
   .copied.show{opacity:1}
 
@@ -474,31 +488,52 @@
     <div class="two-col">
       <div class="list-block">
         <h3>Certifications &amp; training</h3>
-        <ul class="cert-list">
-          <li><b>Generative AI Engineering Mastermind</b>Outskill · 2026</li>
-          <li><b>AI Bootcamp Workshop</b>Outskill · 2026</li>
-          <li><b>Mastering Modern AI</b>Confederation of Indian Industry (CII) · 2025</li>
-          <li><b>Business Mastery Program</b>Business Coaching India (BCI), via TLP Rail · 2025</li>
-          <li><b>Further training</b>Power BI · Python · Web Designing · DBMS · SolidWorks · IT Application</li>
+        <ul class="cred-list">
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Generative AI Engineering Mastermind</span><span class="cred-meta">Outskill</span></div>
+            <span class="cred-yr">2026</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">AI Bootcamp Workshop</span><span class="cred-meta">Outskill</span></div>
+            <span class="cred-yr">2026</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Mastering Modern AI</span><span class="cred-meta">Confederation of Indian Industry (CII)</span></div>
+            <span class="cred-yr">2025</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Business Mastery Program</span><span class="cred-meta">Business Coaching India (BCI), via TLP Rail</span></div>
+            <span class="cred-yr">2025</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Further training</span><span class="cred-meta">Power BI · Python · Web Designing · DBMS · SolidWorks · IT Application</span></div>
+          </li>
         </ul>
       </div>
       <div class="list-block">
         <h3>Education</h3>
-        <div class="edu-item">
-          <div class="deg">B.Tech, Mechanical Engineering</div>
-          <div class="meta">Budge Budge Institute of Technology · MAKAUT</div>
-          <div class="yr">2015 — 2019</div>
-        </div>
-        <div class="edu-item">
-          <div class="deg">Higher Secondary (W.B.C.H.S.E.)</div>
-          <div class="meta">Howrah Vivekananda Institution</div>
-          <div class="yr">2013 — 2015</div>
-        </div>
-        <div class="edu-item">
-          <div class="deg">Secondary (W.B.B.S.E.)</div>
-          <div class="meta">Howrah Vivekananda Institution</div>
-          <div class="yr">2008 — 2013</div>
-        </div>
+        <ul class="cred-list">
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">B.Tech, Mechanical Engineering</span><span class="cred-meta">Budge Budge Institute of Technology · MAKAUT</span></div>
+            <span class="cred-yr">2015–19</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Higher Secondary (W.B.C.H.S.E.)</span><span class="cred-meta">Howrah Vivekananda Institution</span></div>
+            <span class="cred-yr">2013–15</span>
+          </li>
+          <li class="cred">
+            <span class="cred-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <div class="cred-txt"><span class="cred-title">Secondary (W.B.B.S.E.)</span><span class="cred-meta">Howrah Vivekananda Institution</span></div>
+            <span class="cred-yr">2008–13</span>
+          </li>
+        </ul>
         <h3 style="margin-top:26px">Languages</h3>
         <div class="chips">
           <span class="chip">English</span><span class="chip">Hindi</span><span class="chip">Bengali</span>
