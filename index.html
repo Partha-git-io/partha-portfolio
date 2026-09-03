@@ -189,6 +189,155 @@
   .proj-shot{display:block;margin:-24px -24px 16px;border-bottom:1px solid var(--line)}
   .proj-shot img{width:100%;display:block;border-radius:12px 12px 0 0}
 
+  /* ---------- Case-study card (full-width, with carousel) ---------- */
+  .case{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:32px;margin-bottom:20px;position:relative;overflow:hidden;
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .case:hover{border-color:var(--accent);box-shadow:0 14px 34px rgba(36,59,176,.10)}
+  .case-head{max-width:70ch}
+  .case-head h3{font-size:1.3rem;font-weight:600;letter-spacing:-.01em;margin-bottom:12px}
+  .case-head p{color:var(--muted);font-size:.98rem;margin-bottom:20px}
+  .case .chips{margin-top:22px}
+
+  /* ---------- Carousel ---------- */
+  .carousel{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg)}
+  .carousel-chrome{
+    display:flex;align-items:center;gap:12px;padding:11px 16px;
+    border-bottom:1px solid var(--line);background:var(--surface);
+  }
+  .cc-dots{display:flex;gap:6px;flex-shrink:0}
+  .cc-dots i{width:11px;height:11px;border-radius:50%;background:var(--line);display:block}
+  .cc-title{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cc-title em{color:var(--faint);font-style:normal;font-weight:400}
+  .cc-status{
+    margin-left:auto;flex-shrink:0;display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:.74rem;color:#0a7c3f;background:rgba(10,124,63,.08);
+    padding:4px 10px;border-radius:20px;
+  }
+  .cc-status::before{content:"";width:6px;height:6px;border-radius:50%;background:#0a7c3f;box-shadow:0 0 0 3px rgba(10,124,63,.15)}
+  .carousel-viewport{overflow:hidden}
+  .carousel-track{display:flex;width:100%;transition:transform .45s cubic-bezier(.4,0,.2,1);will-change:transform}
+  .slide{flex:0 0 100%;min-width:0;max-width:100%;padding:24px 26px;box-sizing:border-box;overflow:hidden}
+  .slide > *{min-width:0}
+  .slide-label{
+    display:flex;align-items:center;gap:10px;margin-bottom:18px;
+    font-family:var(--mono);font-size:.78rem;color:var(--accent);
+  }
+  .slide-label .step{background:var(--accent-soft);padding:3px 9px;border-radius:6px;font-weight:600;letter-spacing:.02em}
+  .slide-label .cap{color:var(--muted)}
+
+  /* Slide 1 — metric grid */
+  .m-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+  .m-grid .metric{min-width:0}
+  .metric .mv{white-space:nowrap}
+  .metric{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 14px}
+  .metric.hl{background:var(--accent);border-color:var(--accent)}
+  .metric .mv{font-family:var(--mono);font-size:1.35rem;font-weight:600;color:var(--accent);letter-spacing:-.02em}
+  .metric.hl .mv{color:#fff}
+  .metric .ml{font-size:.76rem;color:var(--muted);margin-top:5px;line-height:1.35}
+  .metric.hl .ml{color:rgba(255,255,255,.85)}
+
+  /* Data tables in slides */
+  .tbl{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.82rem}
+  .tbl caption{
+    caption-side:top;text-align:left;font-family:var(--mono);font-size:.76rem;font-weight:600;
+    color:var(--ink);padding:11px 14px;background:var(--surface);border-bottom:1px solid var(--line);
+  }
+  .tbl caption em{color:var(--faint);font-style:normal;font-weight:400}
+  .tbl th{font-family:var(--mono);font-size:.7rem;font-weight:600;color:var(--faint);text-align:left;padding:9px 14px;border-bottom:1px solid var(--line);background:var(--bg)}
+  .tbl td{padding:8px 14px;border-bottom:1px solid var(--line);color:var(--ink)}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .mono{font-family:var(--mono);color:var(--muted)}
+  .tbl .bad{color:#b42318}
+  .tbl .good{color:#0a7c3f}
+  .tbl .warn{color:#b25e09}
+  .pct{font-family:var(--mono);font-weight:600}
+  .pct.g{color:#0a7c3f}.pct.w{color:#b25e09}
+
+  /* transform row (raw -> engine -> clean) */
+  .flow{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:16px;align-items:center}
+  .flow > table{min-width:0}
+  .flow .tbl td,.flow .tbl th{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .flow-engine{
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    background:var(--accent);color:#fff;border-radius:12px;padding:16px 14px;min-width:118px;text-align:center;
+  }
+  .flow-engine .fe-t{font-family:var(--mono);font-size:.82rem;font-weight:600}
+  .flow-engine .fe-s{font-size:.72rem;line-height:1.4;color:rgba(255,255,255,.9)}
+  .flow-arrow{color:var(--accent);flex-shrink:0}
+
+  /* handles / checklist grid */
+  .handles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .handle{
+    display:flex;align-items:flex-start;gap:10px;background:var(--surface);
+    border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:.86rem;color:var(--ink);
+  }
+  .handle svg{width:16px;height:16px;color:#0a7c3f;flex-shrink:0;margin-top:2px}
+  .handle b{font-weight:600}
+  .handle span{color:var(--muted);display:block;font-size:.78rem;margin-top:1px}
+
+  /* stage pipeline (procurement) */
+  .pipe{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:stretch}
+  .stage{position:relative;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:15px 14px}
+  .stage:not(:last-child)::after{
+    content:"→";position:absolute;right:-18px;top:50%;transform:translateY(-50%);
+    color:var(--accent);font-family:var(--mono);font-weight:600;
+  }
+  .stage .st-n{font-family:var(--mono);font-size:.7rem;color:var(--faint)}
+  .stage .st-t{font-weight:600;font-size:.9rem;margin:4px 0 8px}
+  .stage .st-badge{display:inline-block;font-family:var(--mono);font-size:.68rem;padding:3px 8px;border-radius:20px}
+  .st-badge.done{background:rgba(10,124,63,.1);color:#0a7c3f}
+  .st-badge.wait{background:var(--accent-soft);color:var(--accent)}
+  .st-badge.due{background:rgba(178,94,9,.1);color:#b25e09}
+
+  /* reminder log rows */
+  .log{display:grid;gap:9px}
+  .log-row{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 15px}
+  .log-row .lr-when{font-family:var(--mono);font-size:.74rem;color:var(--faint);width:74px;flex-shrink:0}
+  .log-row .lr-msg{font-size:.86rem;color:var(--ink);flex-grow:1}
+  .log-row .lr-msg b{font-weight:600}
+  .log-row .lr-tag{font-family:var(--mono);font-size:.68rem;padding:3px 9px;border-radius:20px;flex-shrink:0}
+  .lr-tag.sent{background:var(--accent-soft);color:var(--accent)}
+  .lr-tag.skip{background:var(--bg);color:var(--faint);border:1px solid var(--line)}
+  .lr-tag.esc{background:rgba(178,94,9,.1);color:#b25e09}
+
+  /* carousel controls */
+  .carousel-nav{
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:12px 16px;border-top:1px solid var(--line);background:var(--surface);
+  }
+  .nav-dots{display:flex;gap:8px;margin:0 auto}
+  .nav-dots button{
+    width:8px;height:8px;padding:0;border:none;border-radius:50%;background:var(--line);
+    cursor:pointer;transition:background .2s ease,width .2s ease,border-radius .2s ease;
+  }
+  .nav-dots button.on{background:var(--accent);width:22px;border-radius:5px}
+  .car-btn{
+    width:38px;height:38px;flex-shrink:0;border:1px solid var(--line);background:var(--surface);
+    border-radius:9px;cursor:pointer;color:var(--ink);display:grid;place-items:center;
+    transition:border-color .18s ease,color .18s ease,background .18s ease;
+  }
+  .car-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+  .car-btn:disabled{opacity:.35;cursor:not-allowed}
+  .car-btn svg{width:18px;height:18px}
+  .car-count{font-family:var(--mono);font-size:.76rem;color:var(--muted);flex-shrink:0;min-width:42px;text-align:right}
+
+  @media (max-width:860px){
+    .m-grid{grid-template-columns:repeat(2,1fr)}
+    .metric.hl{grid-column:1 / -1}
+    .flow{grid-template-columns:1fr;gap:12px}
+    .flow-arrow{transform:rotate(90deg);justify-self:center}
+    .flow-engine{flex-direction:row;justify-self:stretch;justify-content:center}
+    .handles{grid-template-columns:1fr}
+    .pipe{grid-template-columns:1fr;gap:26px}
+    .stage{margin-right:0}
+    .stage:not(:last-child)::after{content:"↓";right:auto;left:50%;top:auto;bottom:-22px;transform:translateX(-50%)}
+    .slide{padding:20px}
+    .case{padding:22px}
+  }
+
   /* ---------- Two-col (certs + education) ---------- */
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
   .list-block h3{font-size:1.05rem;font-weight:600;margin-bottom:16px}
@@ -470,20 +619,213 @@
       </div>
     </a>
 
-    <div class="proj-grid">
-      <div class="proj">
-        <a class="proj-shot" href="data-cleansing.png" target="_blank" rel="noopener">
-          <img src="data-cleansing.png" alt="Data cleansing engine — illustrative mockup">
-        </a>
+    <!-- CASE STUDY 1 — Data cleansing (carousel) -->
+    <div class="case">
+      <div class="case-head">
         <h3>Automated data-cleansing pipeline</h3>
         <p><b>Problem:</b> a 10–12 day manual data-prep cycle bottlenecked reporting. <b>Built:</b> fuzzy-logic (Levenshtein) party-name matching that auto-merges above 95% and flags 72–95% for review, plus scrap removal, job-work routing, HSN&rarr;material tagging and financial-year enrichment. <b>Result:</b> ~45% less effort at 89–93% matching accuracy, feeding a single relational model behind the Power BI dashboards.</p>
-        <div class="chips"><span class="chip">Data Cleaning</span><span class="chip">Fuzzy Matching</span><span class="chip">Apps Script</span><span class="chip">ETL</span></div>
       </div>
-      <div class="proj">
+
+      <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Data-cleansing engine walkthrough">
+        <div class="carousel-chrome">
+          <span class="cc-dots"><i></i><i></i><i></i></span>
+          <span class="cc-title">Sales Data Cleansing Engine <em>· Apps Script</em></span>
+          <span class="cc-status">Run complete</span>
+        </div>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+
+            <!-- Slide 1 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4">
+              <div class="slide-label"><span class="step">01</span><span class="cap">Run summary — one execution, ~4 minutes</span></div>
+              <div class="m-grid">
+                <div class="metric"><div class="mv">12,480</div><div class="ml">rows processed</div></div>
+                <div class="metric"><div class="mv">91%</div><div class="ml">avg match accuracy</div></div>
+                <div class="metric"><div class="mv">148</div><div class="ml">names auto-merged (≥95%)</div></div>
+                <div class="metric"><div class="mv">31</div><div class="ml">suspects to review (72–95%)</div></div>
+                <div class="metric hl"><div class="mv">~4 min</div><div class="ml">was 10–12 days</div></div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+              <div class="slide-label"><span class="step">02</span><span class="cap">Raw in, clean out — the transform</span></div>
+              <div class="flow">
+                <table class="tbl">
+                  <caption>RAW_DATA <em>· variants, scrap, job-work</em></caption>
+                  <thead><tr><th>Party name</th><th>HSN</th></tr></thead>
+                  <tbody>
+                    <tr><td class="bad">M/S Party-A Pvt Ltd</td><td class="mono">76169990</td></tr>
+                    <tr><td class="bad">party-a pvt. ltd.</td><td class="mono">76169990</td></tr>
+                    <tr><td class="bad">PARTY-A PRIVATE LIMITED</td><td class="mono">76169990</td></tr>
+                    <tr><td class="warn">Party-B Metaltech</td><td class="mono">73269099</td></tr>
+                    <tr><td class="mono">scrap lot entry</td><td class="mono">72041000</td></tr>
+                  </tbody>
+                </table>
+                <div class="flow-arrow" aria-hidden="true">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+                <table class="tbl">
+                  <caption>CLEAN_DATA <em>· deduped, enriched</em></caption>
+                  <thead><tr><th>Party name</th><th>Material</th></tr></thead>
+                  <tbody>
+                    <tr><td class="good">Party-A Pvt. Ltd.</td><td class="mono">AL</td></tr>
+                    <tr><td class="good">Party-B Metaltech</td><td class="mono">FE</td></tr>
+                    <tr><td class="mono">→ job-work tab</td><td class="mono">—</td></tr>
+                    <tr><td class="mono">✕ scrap removed</td><td class="mono">—</td></tr>
+                    <tr><td class="mono">+ FY / date / Xl-No</td><td class="mono">enriched</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="flow-engine" style="margin:16px auto 0;max-width:360px">
+                <div class="fe-t">Fuzzy engine</div>
+                <div class="fe-s">Levenshtein % · ≥95 auto-merge · 72–95 flag for review</div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+              <div class="slide-label"><span class="step">03</span><span class="cap">Audit trail — every decision is logged</span></div>
+              <div class="flow" style="grid-template-columns:1fr 1fr;gap:14px">
+                <table class="tbl">
+                  <caption>FUZZY_LOG <em>· auto-merged ≥95%</em></caption>
+                  <thead><tr><th>Matched to</th><th>Score</th></tr></thead>
+                  <tbody>
+                    <tr><td>party-a pvt. ltd.</td><td class="pct g">99%</td></tr>
+                    <tr><td>PARTY-A PRIVATE LTD</td><td class="pct g">98%</td></tr>
+                    <tr><td>party-e and co</td><td class="pct g">97%</td></tr>
+                    <tr><td>party-f prod.</td><td class="pct g">95%</td></tr>
+                  </tbody>
+                </table>
+                <table class="tbl">
+                  <caption>PARTY_SUSPECTS <em>· 72–95%, needs a human</em></caption>
+                  <thead><tr><th>Candidate</th><th>Score</th></tr></thead>
+                  <tbody>
+                    <tr><td>Party-B Metaltech</td><td class="pct w">88%</td></tr>
+                    <tr><td>Party-G Forgings</td><td class="pct w">81%</td></tr>
+                    <tr><td>Party-H Inds.</td><td class="pct w">79%</td></tr>
+                    <tr><td>Party-J Udyog</td><td class="pct w">84%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
+              <div class="slide-label"><span class="step">04</span><span class="cap">What the pipeline handles automatically</span></div>
+              <div class="handles">
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>MIS / party-list normalising</b><span>variants collapse to one canonical name</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Scrap rows dropped</b><span>filtered before they reach reporting</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Job-work split out</b><span>routed to its own tab, kept off sales</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>HSN → material (AL / FE / CU)</b><span>tagged from the HSN code</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Financial-year tagging</b><span>plus date and Xl-No enrichment</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Re-runs only on change</b><span>idempotent, applied back to source</span></div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="carousel-nav">
+          <button class="car-btn" data-prev aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="nav-dots" data-dots role="tablist" aria-label="Choose slide"></div>
+          <span class="car-count" data-count>1 / 4</span>
+          <button class="car-btn" data-next aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="chips"><span class="chip">Data Cleaning</span><span class="chip">Fuzzy Matching</span><span class="chip">Apps Script</span><span class="chip">ETL</span></div>
+    </div>
+
+    <!-- CASE STUDY 2 — Procurement automation (carousel) -->
+    <div class="case">
+      <div class="case-head">
         <h3>Procurement automation suite</h3>
         <p><b>Problem:</b> procurement ran on manual follow-ups across indent, PO, vendor, and receiving — slow and easy to drop. <b>Built:</b> a web app on Apps Script + Sheets that tracks each stage and auto-chases pending items, skipping holidays. <b>Result:</b> ~40% fewer manual follow-ups, now used daily by 20–30 people.</p>
-        <div class="chips"><span class="chip">Apps Script</span><span class="chip">JavaScript</span><span class="chip">Automation</span><span class="chip">Sheets</span></div>
       </div>
+
+      <div class="carousel" data-carousel aria-roledescription="carousel" aria-label="Procurement automation walkthrough">
+        <div class="carousel-chrome">
+          <span class="cc-dots"><i></i><i></i><i></i></span>
+          <span class="cc-title">Procurement Tracker <em>· Apps Script + Sheets</em></span>
+          <span class="cc-status">Live</span>
+        </div>
+
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+
+            <!-- Slide 1 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4">
+              <div class="slide-label"><span class="step">01</span><span class="cap">At a glance — what the suite delivers</span></div>
+              <div class="m-grid">
+                <div class="metric"><div class="mv">4</div><div class="ml">stages tracked end-to-end</div></div>
+                <div class="metric"><div class="mv">~40%</div><div class="ml">fewer manual follow-ups</div></div>
+                <div class="metric"><div class="mv">20–30</div><div class="ml">people using it daily</div></div>
+                <div class="metric"><div class="mv">0</div><div class="ml">chases sent on holidays</div></div>
+                <div class="metric hl"><div class="mv">Auto</div><div class="ml">reminders chase pending items</div></div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4">
+              <div class="slide-label"><span class="step">02</span><span class="cap">The pipeline — one record, four stages</span></div>
+              <div class="pipe">
+                <div class="stage"><div class="st-n">01</div><div class="st-t">Indent</div><span class="st-badge done">approved</span></div>
+                <div class="stage"><div class="st-n">02</div><div class="st-t">Purchase order</div><span class="st-badge done">issued</span></div>
+                <div class="stage"><div class="st-n">03</div><div class="st-t">Vendor</div><span class="st-badge wait">confirmed</span></div>
+                <div class="stage"><div class="st-n">04</div><div class="st-t">Receiving</div><span class="st-badge due">pending</span></div>
+              </div>
+              <p style="margin-top:18px;color:var(--muted);font-size:.86rem;max-width:64ch">Each indent flows through the same tracked stages. Status is visible to everyone in real time, so nothing sits in someone's inbox unnoticed.</p>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4">
+              <div class="slide-label"><span class="step">03</span><span class="cap">Auto-chase engine — holiday-aware reminders</span></div>
+              <div class="log">
+                <div class="log-row"><span class="lr-when">Mon 09:00</span><span class="lr-msg">PO&nbsp;#4471 — <b>vendor confirmation</b> overdue 1 day</span><span class="lr-tag sent">reminder sent</span></div>
+                <div class="log-row"><span class="lr-when">Sat / Sun</span><span class="lr-msg">Weekend &amp; public holiday</span><span class="lr-tag skip">skipped</span></div>
+                <div class="log-row"><span class="lr-when">Tue 09:00</span><span class="lr-msg">PO&nbsp;#4471 — still pending, 2nd nudge</span><span class="lr-tag sent">reminder sent</span></div>
+                <div class="log-row"><span class="lr-when">Wed 09:00</span><span class="lr-msg">PO&nbsp;#4471 — <b>escalated</b> to procurement head</span><span class="lr-tag esc">escalated</span></div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4">
+              <div class="slide-label"><span class="step">04</span><span class="cap">What the suite handles automatically</span></div>
+              <div class="handles">
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Stage tracking</b><span>indent → PO → vendor → receiving</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Holiday-aware reminders</b><span>skips weekends and public holidays</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Auto-escalation</b><span>owner first, then the department head</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Single source of truth</b><span>one record, no scattered email threads</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>In-app updates</b><span>owners mark progress without email</span></div></div>
+                <div class="handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg><div><b>Audit history</b><span>who changed what, and when</span></div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="carousel-nav">
+          <button class="car-btn" data-prev aria-label="Previous slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="nav-dots" data-dots role="tablist" aria-label="Choose slide"></div>
+          <span class="car-count" data-count>1 / 4</span>
+          <button class="car-btn" data-next aria-label="Next slide">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="chips"><span class="chip">Apps Script</span><span class="chip">JavaScript</span><span class="chip">Automation</span><span class="chip">Sheets</span></div>
+    </div>
+
+    <div class="proj-grid">
       <div class="proj">
         <h3>n8n workflow automation <span style="color:var(--faint);font-weight:400">(experimental)</span></h3>
         <p>Prototyped event-driven automation, including a customer-complaint workflow that reads incoming messages and drafts suitable responses.</p>
@@ -645,6 +987,64 @@
     try { document.execCommand('copy'); done(); } catch (e) { alert(text); }
     document.body.removeChild(t);
   }
+
+  /* ---------- Carousels ---------- */
+  document.querySelectorAll('[data-carousel]').forEach(car => {
+    const track  = car.querySelector('.carousel-track');
+    const slides = [...car.querySelectorAll('.slide')];
+    const prev   = car.querySelector('[data-prev]');
+    const next   = car.querySelector('[data-next]');
+    const dotsEl = car.querySelector('[data-dots]');
+    const count  = car.querySelector('[data-count]');
+    const total  = slides.length;
+    let i = 0;
+
+    // build dots
+    slides.forEach((_, n) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', 'Go to slide ' + (n + 1));
+      b.addEventListener('click', () => go(n));
+      dotsEl.appendChild(b);
+    });
+    const dots = [...dotsEl.children];
+
+    function go(n) {
+      i = (n + total) % total;
+      track.style.transform = 'translateX(' + (-i * 100) + '%)';
+      dots.forEach((d, k) => {
+        d.classList.toggle('on', k === i);
+        d.setAttribute('aria-selected', k === i);
+      });
+      if (count) count.textContent = (i + 1) + ' / ' + total;
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i === total - 1;
+    }
+
+    prev && prev.addEventListener('click', () => go(i - 1));
+    next && next.addEventListener('click', () => go(i + 1));
+
+    // keyboard when the carousel is focused/hovered
+    car.setAttribute('tabindex', '0');
+    car.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); go(i - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); }
+    });
+
+    // touch / swipe
+    let x0 = null;
+    const vp = car.querySelector('.carousel-viewport');
+    vp.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+    vp.addEventListener('touchend', e => {
+      if (x0 === null) return;
+      const dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 45) go(dx < 0 ? i + 1 : i - 1);
+      x0 = null;
+    }, { passive: true });
+
+    go(0);
+  });
 </script>
 </body>
 </html>
