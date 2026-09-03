@@ -181,11 +181,13 @@
 
   /* ---------- Projects ---------- */
   .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-  .proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .proj{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;overflow:hidden}
   .proj:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 12px 30px rgba(36,59,176,.08)}
   .proj h3{font-size:1.05rem;font-weight:600;margin-bottom:10px}
   .proj p{color:var(--muted);font-size:.94rem;margin-bottom:16px;flex-grow:1}
   .proj .chips{margin-top:auto}
+  .proj-shot{display:block;margin:-24px -24px 16px;border-bottom:1px solid var(--line)}
+  .proj-shot img{width:100%;display:block;border-radius:12px 12px 0 0}
 
   /* ---------- Two-col (certs + education) ---------- */
   .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
@@ -461,7 +463,6 @@
           <span class="chip">Lovable</span>
           <span class="chip">Claude</span>
           <span class="chip">ChatGPT</span>
-          <span class="chip">AI-Assisted Development</span>
           <span class="chip">AI Assistant</span>
           <span class="chip">CRM</span>
         </div>
@@ -471,14 +472,17 @@
 
     <div class="proj-grid">
       <div class="proj">
+        <a class="proj-shot" href="data-cleansing.png" target="_blank" rel="noopener">
+          <img src="data-cleansing.png" alt="Data cleansing engine — illustrative mockup">
+        </a>
+        <h3>Automated data-cleansing pipeline</h3>
+        <p><b>Problem:</b> a 10–12 day manual data-prep cycle bottlenecked reporting. <b>Built:</b> fuzzy-logic (Levenshtein) party-name matching that auto-merges above 95% and flags 72–95% for review, plus scrap removal, job-work routing, HSN&rarr;material tagging and financial-year enrichment. <b>Result:</b> ~45% less effort at 89–93% matching accuracy, feeding a single relational model behind the Power BI dashboards.</p>
+        <div class="chips"><span class="chip">Data Cleaning</span><span class="chip">Fuzzy Matching</span><span class="chip">Apps Script</span><span class="chip">ETL</span></div>
+      </div>
+      <div class="proj">
         <h3>Procurement automation suite</h3>
         <p><b>Problem:</b> procurement ran on manual follow-ups across indent, PO, vendor, and receiving — slow and easy to drop. <b>Built:</b> a web app on Apps Script + Sheets that tracks each stage and auto-chases pending items, skipping holidays. <b>Result:</b> ~40% fewer manual follow-ups, now used daily by 20–30 people.</p>
         <div class="chips"><span class="chip">Apps Script</span><span class="chip">JavaScript</span><span class="chip">Automation</span><span class="chip">Sheets</span></div>
-      </div>
-      <div class="proj">
-        <h3>Automated data-cleansing pipeline</h3>
-        <p><b>Problem:</b> a 10–12 day manual data-prep cycle bottlenecked reporting. <b>Built:</b> fuzzy-logic cleansing with suspect-matching pools that maps raw records in minutes. <b>Result:</b> ~45% less effort at 89–93% matching accuracy, feeding a single relational model behind the Power BI dashboards.</p>
-        <div class="chips"><span class="chip">Data Cleaning</span><span class="chip">Fuzzy Matching</span><span class="chip">ETL</span><span class="chip">Power Query</span></div>
       </div>
       <div class="proj">
         <h3>n8n workflow automation <span style="color:var(--faint);font-weight:400">(experimental)</span></h3>
